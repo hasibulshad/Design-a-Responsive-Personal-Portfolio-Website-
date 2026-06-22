@@ -31,6 +31,7 @@ resumePortfolioTabBtn.forEach((tabBtn, i) => {
       resumeTabNav(i);
    });
 });
+
 /* =====================================================
    Service modal open/close function
 ===================================================== */
@@ -45,7 +46,6 @@ serviceCardWithModals.forEach((serviceCardWithModal) => {
     // Modal ওপেন করার জন্য
     serviceCard.addEventListener("click", () => {
         serviceBackDrop.style.display = "flex";
-
         setTimeout(() => {
             serviceBackDrop.classList.add("active");
             serviceModal.classList.add("active");
@@ -53,22 +53,22 @@ serviceCardWithModals.forEach((serviceCardWithModal) => {
     });
 
     // Modal বন্ধ করার জন্য
-    modalCloseBtn.addEventListener("click", () => {
+    modalCloseBtn.addEventListener("click", (e) => {
+        e.stopPropagation(); // Parent click ট্রিগার হওয়া বন্ধ করবে
         serviceBackDrop.classList.remove("active");
         serviceModal.classList.remove("active");
-
         setTimeout(() => {
             serviceBackDrop.style.display = "none";
         }, 500);
     });
 });
+
 /* =====================================================
    Portfolio modals, tabs and cards
 ===================================================== */
 // Filter portfolio cards according to portfolio tabs.
 document.addEventListener("DOMContentLoaded", () => {
-    const portfolioTabs = document.querySelector(".portfolio-tabs");
-    const portfolioTabBtns = portfolioTabs.querySelectorAll(".tab-btn");
+    const portfolioTabBtns = document.querySelectorAll(".portfolio-tabs .tab-btn");
     const cardsWithModals = document.querySelectorAll(".portfolio-container .card-with-modal");
 
     portfolioTabBtns.forEach((tabBtn) => {
@@ -78,19 +78,11 @@ document.addEventListener("DOMContentLoaded", () => {
             cardsWithModals.forEach((cardWithModal) => {
                 if(filter === "all" || cardWithModal.classList.contains(filter)){
                     cardWithModal.classList.remove("hidden");
-
-                    setTimeout(() => {
-                        cardWithModal.style.opacity = "1";
-                        cardWithModal.style.transition = ".5s ease";
-                    }, 1);
+                    cardWithModal.style.opacity = "1";
                 }
                 else{
                     cardWithModal.classList.add("hidden");
-
-                    setTimeout(() => {
-                        cardWithModal.style.opacity = "0";
-                        cardWithModal.style.transition = ".5s ease";
-                    }, 1);
+                    cardWithModal.style.opacity = "0";
                 }
             });
 
@@ -111,27 +103,22 @@ portfolioCardsWithModals.forEach((portfolioCardWithModal) => {
 
     portfolioCard.addEventListener("click", () => {
         portfolioBackdrop.style.display = "flex";
-
         setTimeout(() => {
             portfolioBackdrop.classList.add("active");
-        }, 300);
-
-        setTimeout(() => {
             portfolioModal.classList.add("active");
-        }, 300);
+        }, 100);
     });
 
-    modalCloseBtn.addEventListener("click", () => {
+    modalCloseBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        portfolioBackdrop.classList.remove("active");
+        portfolioModal.classList.remove("active");
         setTimeout(() => {
             portfolioBackdrop.style.display = "none";
         }, 500);
-
-        setTimeout(() => {
-            portfolioBackdrop.classList.remove("active");
-            portfolioModal.classList.remove("active");
-        }, 100);
     });
 });
+
 /* =====================================================
    Testimonial Swiper
 ===================================================== */
@@ -149,9 +136,6 @@ var swiper = new Swiper(".sue-client-swiper", {
           slidesPerGroup: 2,
         },
       },
-      scrollbar: {
-        el: ".swiper-scrollbar",
-      },
       navigation: {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
@@ -161,51 +145,3 @@ var swiper = new Swiper(".sue-client-swiper", {
         clickable: true,
       },
 });
-/* =====================================================
-   Send/Receive emails from contact form - EmailJS
-===================================================== */
-
-/* =====================================================
-   Shrink the height of the header on scroll
-===================================================== */
-
-/* =====================================================
-   Bottom navigation menu
-===================================================== */
-
-// Each bottom navigation menu items active on page scroll.
-
-// Javascript to show bottom navigation menu on home(page load).
-
-// Javascript to show/hide bottom navigation menu on home(scroll).
-
-// Hide bottom navigation menu on click menu-hide-btn.
-
-// Show bottom navigation menu on click menu-show-btn.
-
-/* =====================================================
-   To-top-button with scroll indicator bar
-===================================================== */
-
-/* =====================================================
-   Customized cursor on mousemove
-===================================================== */
-
-// Cursor effects on hover website elements.
-
-/* =====================================================
-   Website dark/light theme
-===================================================== */
-
-// Change theme and save current theme on click the theme button.
-
-// Get saved theme icon and theme on document loaded.
-
-/* =====================================================
-   ScrollReveal JS animations
-===================================================== */
-
-// Common reveal options to create reveal animations.
-
-// Target elements and specify options to create reveal animations.
-      
